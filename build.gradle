@@ -8,6 +8,12 @@ buildscript {
   }
 }
 
+plugins {
+    id 'maven'
+    id 'maven-publish'
+    id 'eclipse'
+}
+
 subprojects { project ->
   group = GROUP
   version = VERSION_NAME
@@ -33,4 +39,28 @@ subprojects { project ->
   }
 
   apply plugin: 'net.ltgt.errorprone'
+  
 }
+
+task writeNewPom {
+    doLast {
+        pom {
+            project {
+                groupId 'org.example'
+                artifactId 'test'
+                version '1.0.0'
+                inceptionYear '2008'
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+            }
+        }.writeTo("pom.xml")
+    }
+}
+
+apply plugin: 'maven'
+

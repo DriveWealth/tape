@@ -10,3 +10,7 @@
 build
 local.properties
 reports
+/target/
+/.classpath
+/.project
+/.settings/
